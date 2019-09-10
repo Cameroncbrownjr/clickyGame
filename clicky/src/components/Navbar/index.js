@@ -1,42 +1,17 @@
 import React from "react";
 import "./style.css";
 
-class Counter extends React.Component {
-    state = {
-        count: 0
-    };
 
-    handleIncrement = () => {
-        this.setState({ count: this.state.count + 1 });
-    };
+function Navbar(props) {
+    return (
 
-    handleDecrement = () => {
-        this.setState({ count: this.state.count - 1 });
-    };
-
-    render() {
-        return (
-            //   <div className="card text-center">
-            //     <div className="card-header bg-primary text-white">
-            //       Click Counter!
-            //     </div>
-            //     <div className="card-body">
-            //       <p className="card-text">Click Count: {this.state.count}</p>
-            //       <button className="btn btn-primary" onClick={this.handleIncrement}>
-            //         Increment
-            //       </button>{" "}
-            //       <button className="btn btn-danger" onClick={this.handleDecrement}>
-            //         Decrement
-            //       </button>
-            //     </div>
-            //   </div>
-            <nav class="navbar navbar-light bg-light">
-                <span class="navbar-brand mb-0 h1">Cartoon Shuffle</span>
-                <span class="navbar-brand mb-0 h1">Click an Image to Begin</span>
-                <span class="navbar-brand mb-0 h1">score : {this.state.count} </span>
-            </nav>
-        );
-    }
+        <nav className="navbar navbar-light bg-light">
+            <span className="navbar-brand mb-0 h1">Cartoon Shuffle</span>
+            <span className="navbar-brand mb-0 h1">Click an Image to Begin</span>
+            <span className="navbar-brand mb-0 h1">score : {props.score} </span>
+        </nav>
+    );
 }
 
-export default Counter;
+
+export default Navbar;

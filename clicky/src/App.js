@@ -1,27 +1,41 @@
 import React, { Component } from "react";
 import FriendCard from "./components/FriendCard";
 import Wrapper from "./components/Wrapper";
-import Navbar from "./components/Navbar";
 import clickables from "./clickables.json";
+import Navbar from "./components/Navbar";
 
 class App extends Component {
   state = {
-    clickables
+    clickables,
+    score: 0,
+    clicked: [],
   };
 
-  removeFriend = id => {
-    const clickables = this.state.clickables.filter(item => item.id !== id);
-    this.setState({ clickables });
+  scoreTracking = () => {
+    this.setState({ score: this.state.score + 1 });
+  };
+
+  lastTracking = (id) => {
+    console.log(this.state.clicked)
+    const array = this.state.clicked
+    if (array.indexOf(id) > -1) {
+      this.setState({ score: 0 })
+      this.setState({ clicked: [] })
+    }
+    else {
+      this.setState({ clicked: array.concat(id) })
+    }
   };
 
   render() {
     return (
       <div>
-        <Navbar />
+        <Navbar score={this.state.score} />
         <Wrapper>
           {this.state.clickables.map(friend => (
             <FriendCard
-              removeFriend={this.removeFriend}
+              scoreTracking={this.scoreTracking}
+              lastTracking={this.lastTracking}
               id={friend.id}
               key={friend.id}
               image={friend.image}
