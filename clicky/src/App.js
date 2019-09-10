@@ -27,20 +27,22 @@ class App extends Component {
     }
   };
 
+
   render() {
     return (
       <div>
         <Navbar score={this.state.score} />
         <Wrapper>
-          {this.state.clickables.map(friend => (
-            <FriendCard
-              scoreTracking={this.scoreTracking}
-              lastTracking={this.lastTracking}
-              id={friend.id}
-              key={friend.id}
-              image={friend.image}
-            />
-          ))}
+          {
+            this.state.clickables.sort(() => Math.random() - 0.5).map(friend => (
+              <FriendCard
+                scoreTracking={this.scoreTracking}
+                lastTracking={this.lastTracking}
+                id={friend.id}
+                key={friend.id}
+                image={friend.image}
+              />
+            ))}
         </Wrapper>
       </div>
     );
