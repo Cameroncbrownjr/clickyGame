@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import FriendCard from "./components/FriendCard";
+import Wrapper from "./components/Wrapper";
+import Navbar from "./components/Navbar";
+import clickables from "./clickables.json";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    clickables
+  };
+
+  removeFriend = id => {
+    const clickables = this.state.clickables.filter(item => item.id !== id);
+    this.setState({ clickables });
+  };
+
+  render() {
+    return (
+      <div>
+        <Navbar />
+        <Wrapper>
+          {this.state.clickables.map(friend => (
+            <FriendCard
+              removeFriend={this.removeFriend}
+              id={friend.id}
+              key={friend.id}
+              image={friend.image}
+            />
+          ))}
+        </Wrapper>
+      </div>
+    );
+  }
 }
 
 export default App;
